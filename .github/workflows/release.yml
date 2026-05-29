@@ -40,7 +40,7 @@ jobs:
           git push origin "${{ inputs.version }}"
 
       - name: Install Syft (SBOM)
-        uses: anchore/sbom-action/download-syft@f5e124a5e5e1d497a692642738d2a8f0d3284a31 # v0.17.9
+        uses: anchore/sbom-action/download-syft@df80a981bc6edbc4e220a492d3cbe9f5547a6e75 # v0.17.9
 
       - name: Install cosign
         uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
