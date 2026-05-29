@@ -1,9 +1,7 @@
 <div align="center">
 
 <img src="docs/src/public/banner.svg" alt="updock: run any Docker app from one word" width="100%">
-
-<br><br>
-
+	
 [![CI](https://github.com/amrelsagaei/updock/actions/workflows/ci.yml/badge.svg)](https://github.com/amrelsagaei/updock/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/amrelsagaei/updock)](https://goreportcard.com/report/github.com/amrelsagaei/updock)
 [![Release](https://img.shields.io/github/v/release/amrelsagaei/updock?sort=semver)](https://github.com/amrelsagaei/updock/releases)
