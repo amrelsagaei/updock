@@ -18,15 +18,6 @@ linters:
     - prealloc
 
   settings:
-    gofumpt:
-      extra-rules: true
-
-    gci:
-      sections:
-        - standard
-        - default
-        - prefix(github.com/amrelsagaei/updock)
-
     nolintlint:
       require-explanation: true
       require-specific: true
@@ -61,6 +52,14 @@ formatters:
   enable:
     - gofumpt
     - gci
+  settings:
+    gofumpt:
+      extra-rules: true
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/amrelsagaei/updock)
 
 issues:
   max-issues-per-linter: 0
