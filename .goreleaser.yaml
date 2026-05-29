@@ -48,7 +48,6 @@ nfpms:
     formats:
       - deb
       - rpm
-      - apk
     bindir: /usr/bin
 
 homebrew_casks:

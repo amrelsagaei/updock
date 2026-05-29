@@ -36,11 +36,6 @@ sudo dpkg -i updock_*.deb
 sudo rpm -i updock_*.rpm
 ```
 
-```bash [Alpine]
-# download updock_*.apk from the releases page, then:
-sudo apk add --allow-untrusted updock_*.apk
-```
-
 ```powershell [Windows]
 # download updock_windows_<arch>.zip from the releases page,
 # extract updock.exe, and add it to your PATH.
@@ -81,7 +76,6 @@ the quarantine attribute automatically. For a manually downloaded binary, see
 |---|---|---|
 | Debian / Ubuntu (`.deb`) | `sudo dpkg -i updock_*.deb` or `sudo apt install ./updock_*.deb` | from the releases page |
 | RPM (Fedora / RHEL) | `sudo rpm -i updock_*.rpm` | from the releases page |
-| Alpine (`.apk`) | `sudo apk add --allow-untrusted updock_*.apk` | from the releases page |
 
 ## Windows
 
