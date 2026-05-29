@@ -69,11 +69,11 @@ func TestConfirmPortMappings(t *testing.T) {
 		return value, nil
 	}
 
-	proposed := ProposePorts([]int{80, 443})
 	origChk := PortChecker
 	defer func() { PortChecker = origChk }()
 	PortChecker = func(_ int) bool { return true }
 
+	proposed := ProposePorts([]int{80, 443})
 	result, err := ConfirmPortMappings(proposed)
 	if err != nil {
 		t.Fatalf("ConfirmPortMappings error: %v", err)
