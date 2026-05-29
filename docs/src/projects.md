@@ -14,7 +14,7 @@ By default, projects are created under `~/updock/`. Change the root with
 ├── docker-compose.yml   # generated for you, yours to edit
 ├── .env                 # values and secrets, chmod 0600, gitignored
 ├── .gitignore           # ignores .env and data/
-├── updock.json          # metadata: image, tag, ports, created date, state
+├── updock.json          # metadata: image, tag, ports, timestamps, state
 └── data/                # persistent volumes for this app
 ```
 

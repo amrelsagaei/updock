@@ -24,8 +24,10 @@ Running `updock <name>` walks through these stages:
    strong ones), common environment variables, and where to keep volumes.
 6. **Scaffold.** updock creates a project folder with a `docker-compose.yml`, a
    locked-down `.env`, a `.gitignore`, and an `updock.json` metadata file.
-7. **Up.** updock pulls the image and starts the stack in the background, then
-   prints the URLs you can open.
+7. **Up.** updock asks "Start it now?". If you confirm, it pulls the images and
+   brings the stack up in the background, then reports that the project is
+   running. If you decline, the files are left in place and you can start it
+   later with `updock up <n>` (which prints the URLs to open).
 
 If updock cannot read an image's metadata (a private or unusual image), it says
 so and continues with a minimal configuration rather than failing.
