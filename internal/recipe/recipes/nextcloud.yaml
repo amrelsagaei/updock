@@ -1,0 +1,59 @@
+meta:
+  name: nextcloud
+  description: Nextcloud with MariaDB database
+  version: "1.0"
+  author: updock
+  tags: [cloud, storage, collaboration]
+
+prompts:
+  - name: DB_ROOT_PASSWORD
+    description: MariaDB root password
+    required: true
+    secret: true
+    generate: password
+  - name: DB_PASSWORD
+    description: Nextcloud database password
+    required: true
+    secret: true
+    generate: password
+  - name: DB_NAME
+    description: Database name
+    default: nextcloud
+  - name: DB_USER
+    description: Database user
+    default: nextcloud
+  - name: NC_PORT
+    description: Nextcloud HTTP port
+    default: "8080"
+    type: port
+
+services:
+  nextcloud:
+    image: nextcloud
+    default_tag: latest
+    ports:
+      - "${NC_PORT}:80"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    depends_on:
+      - db
+    volumes:
+      - nextcloud_data:/var/www/html
+
+  db:
+    image: mariadb
+    default_tag: "11"
+    environment:
+      MARIADB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MARIADB_DATABASE: "${DB_NAME}"
+      MARIADB_USER: "${DB_USER}"
+      MARIADB_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  nextcloud_data: {}
+  db_data: {}

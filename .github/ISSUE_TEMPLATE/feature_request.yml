@@ -1,0 +1,48 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What problem does this solve? Why do you need it?
+      placeholder: "I find it frustrating when..."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature from a user's perspective. What would you type? What would you see?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds or alternative approaches you've thought about.
+    validations:
+      required: false
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Area
+      options:
+        - "Search & selection"
+        - "Configuration & prompts"
+        - "Lifecycle commands"
+        - "Recipes"
+        - "CLI output & display"
+        - "Distribution & install"
+        - "Other"
+    validations:
+      required: true
+  - type: checkboxes
+    id: due-diligence
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this hasn't been requested.
+          required: true

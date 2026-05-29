@@ -1,0 +1,59 @@
+meta:
+  name: plausible
+  description: Plausible analytics with PostgreSQL and ClickHouse
+  version: "1.0"
+  author: updock
+  tags: [analytics, privacy, web]
+
+prompts:
+  - name: SECRET_KEY_BASE
+    description: Secret key for encryption
+    required: true
+    secret: true
+    generate: password
+  - name: DB_PASSWORD
+    description: PostgreSQL password
+    required: true
+    secret: true
+    generate: password
+  - name: PLAUSIBLE_PORT
+    description: Plausible HTTP port
+    default: "8000"
+    type: port
+  - name: BASE_URL
+    description: Public URL for Plausible
+    default: http://localhost:8000
+
+services:
+  plausible:
+    image: ghcr.io/plausible/community-edition
+    default_tag: latest
+    ports:
+      - "${PLAUSIBLE_PORT}:8000"
+    environment:
+      DATABASE_URL: "postgres://postgres:${DB_PASSWORD}@db:5432/plausible"
+      CLICKHOUSE_DATABASE_URL: "http://clickhouse:8123/plausible"
+      SECRET_KEY_BASE: "${SECRET_KEY_BASE}"
+      BASE_URL: "${BASE_URL}"
+    depends_on:
+      - db
+      - clickhouse
+
+  db:
+    image: postgres
+    default_tag: "16"
+    environment:
+      POSTGRES_DB: plausible
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    default_tag: latest
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+
+volumes:
+  db_data: {}
+  clickhouse_data: {}

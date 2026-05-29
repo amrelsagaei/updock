@@ -1,0 +1,59 @@
+meta:
+  name: wordpress
+  description: WordPress with MySQL database
+  version: "1.0"
+  author: updock
+  tags: [cms, blog, php]
+
+prompts:
+  - name: DB_ROOT_PASSWORD
+    description: MySQL root password
+    required: true
+    secret: true
+    generate: password
+  - name: DB_NAME
+    description: Database name
+    default: wordpress
+  - name: DB_USER
+    description: Database user
+    default: wordpress
+  - name: DB_PASSWORD
+    description: Database password
+    required: true
+    secret: true
+    generate: password
+  - name: WP_PORT
+    description: WordPress HTTP port
+    default: "8080"
+    type: port
+
+services:
+  wordpress:
+    image: wordpress
+    default_tag: latest
+    ports:
+      - "${WP_PORT}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: "${DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
+      WORDPRESS_DB_NAME: "${DB_NAME}"
+    depends_on:
+      - db
+    volumes:
+      - wordpress_data:/var/www/html
+
+  db:
+    image: mysql
+    default_tag: "8.0"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  wordpress_data: {}
+  db_data: {}

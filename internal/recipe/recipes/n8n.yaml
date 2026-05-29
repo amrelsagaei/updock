@@ -1,0 +1,55 @@
+meta:
+  name: n8n
+  description: n8n workflow automation with PostgreSQL
+  version: "1.0"
+  author: updock
+  tags: [automation, workflow, integration]
+
+prompts:
+  - name: DB_PASSWORD
+    description: PostgreSQL password
+    required: true
+    secret: true
+    generate: password
+  - name: DB_NAME
+    description: Database name
+    default: n8n
+  - name: DB_USER
+    description: Database user
+    default: n8n
+  - name: N8N_PORT
+    description: n8n HTTP port
+    default: "5678"
+    type: port
+
+services:
+  n8n:
+    image: n8nio/n8n
+    default_tag: latest
+    ports:
+      - "${N8N_PORT}:5678"
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: db
+      DB_POSTGRESDB_PORT: "5432"
+      DB_POSTGRESDB_DATABASE: "${DB_NAME}"
+      DB_POSTGRESDB_USER: "${DB_USER}"
+      DB_POSTGRESDB_PASSWORD: "${DB_PASSWORD}"
+    depends_on:
+      - db
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  db:
+    image: postgres
+    default_tag: "16"
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  n8n_data: {}
+  db_data: {}

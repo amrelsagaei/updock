@@ -1,0 +1,27 @@
+{
+  "name": "updock",
+  "version": "0.0.0",
+  "description": "Run any Docker app from one word.",
+  "homepage": "https://amrelsagaei.com",
+  "license": "MIT",
+  "author": "Amr Elsagaei <amr.elsagaei@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amrelsagaei/updock.git"
+  },
+  "keywords": ["docker", "docker-compose", "cli", "devtools", "containers"],
+  "bin": {
+    "updock": "bin/updock.js"
+  },
+  "files": ["bin/updock.js"],
+  "optionalDependencies": {
+    "@updock/linux-x64": "0.0.0",
+    "@updock/linux-arm64": "0.0.0",
+    "@updock/darwin-x64": "0.0.0",
+    "@updock/darwin-arm64": "0.0.0",
+    "@updock/win32-x64": "0.0.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

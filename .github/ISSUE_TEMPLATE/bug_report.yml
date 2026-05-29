@@ -1,0 +1,76 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in upDock
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill out the sections below so we can reproduce and fix it.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear description of what happened and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to reproduce the behavior.
+      placeholder: |
+        1. Run `updock <command>`
+        2. Select option X
+        3. See error...
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: upDock version
+      description: Paste the output of `updock version`.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: "OS, Docker version (`docker --version`), Docker Compose version, shell."
+      placeholder: |
+        OS: Ubuntu 24.04
+        Docker: 27.1.0
+        Docker Compose: v2.29.0
+        Shell: bash 5.2
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Paste any error messages or logs.
+      render: text
+    validations:
+      required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - "Low - cosmetic or minor inconvenience"
+        - "Medium - feature partially broken, workaround exists"
+        - "High - feature broken, no workaround"
+        - "Critical - data loss, security issue, or crash"
+    validations:
+      required: true
+  - type: checkboxes
+    id: due-diligence
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this hasn't been reported.
+          required: true
+        - label: I'm running the latest version of upDock.
+          required: false

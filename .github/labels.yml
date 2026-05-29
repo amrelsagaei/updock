@@ -1,0 +1,33 @@
+- name: bug
+  color: "d73a4a"
+  description: Confirmed bug
+- name: enhancement
+  color: "a2eeef"
+  description: New feature or improvement
+- name: recipe
+  color: "5319e7"
+  description: New or updated recipe
+- name: triage
+  color: "e4e669"
+  description: Needs review from a maintainer
+- name: good first issue
+  color: "7057ff"
+  description: Good for newcomers
+- name: help wanted
+  color: "008672"
+  description: Extra attention is needed
+- name: docs
+  color: "0075ca"
+  description: Documentation improvement
+- name: security
+  color: "b60205"
+  description: Security-related
+- name: duplicate
+  color: "cfd3d7"
+  description: Already reported
+- name: wontfix
+  color: "ffffff"
+  description: Not planned
+- name: dependencies
+  color: "0366d6"
+  description: Dependency updates

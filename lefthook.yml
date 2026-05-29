@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    fmt:
+      glob: "*.go"
+      run: golangci-lint fmt ./... && git diff --exit-code
+    lint:
+      glob: "*.go"
+      run: golangci-lint run --new-from-rev=HEAD~1 ./...
+    mod-tidy:
+      glob: "*.go"
+      run: go mod tidy && git diff --exit-code go.sum

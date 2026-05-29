@@ -1,0 +1,53 @@
+name: Recipe Request
+description: Request a new multi-service recipe for upDock
+title: "[Recipe]: "
+labels: ["recipe", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Recipes define multi-service apps (e.g., WordPress + MySQL). Request one here and we'll add it to the built-in catalog.
+  - type: input
+    id: app-name
+    attributes:
+      label: Application name
+      description: The main application this recipe is for.
+      placeholder: "e.g., Nextcloud, GitLab, Mastodon"
+    validations:
+      required: true
+  - type: textarea
+    id: services
+    attributes:
+      label: Services needed
+      description: What containers does this app need?
+      placeholder: |
+        - Nextcloud (main app)
+        - MariaDB (database)
+        - Redis (cache)
+    validations:
+      required: true
+  - type: textarea
+    id: docker-images
+    attributes:
+      label: Docker images
+      description: The Docker Hub images you'd use (if known).
+      placeholder: |
+        - nextcloud:latest
+        - mariadb:11
+        - redis:7-alpine
+    validations:
+      required: false
+  - type: textarea
+    id: config
+    attributes:
+      label: Important configuration
+      description: Key env vars, ports, volumes, or setup steps that people usually get wrong.
+    validations:
+      required: false
+  - type: checkboxes
+    id: due-diligence
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this recipe hasn't been requested.
+          required: true

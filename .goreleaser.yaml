@@ -1,0 +1,128 @@
+version: 2
+
+project_name: updock
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: updock
+    main: ./cmd/updock/
+    binary: updock
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/amrelsagaei/updock/internal/version.Version={{.Version}}
+      - -X github.com/amrelsagaei/updock/internal/version.Commit={{.Commit}}
+      - -X github.com/amrelsagaei/updock/internal/version.Date={{.Date}}
+
+archives:
+  - id: default
+    formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - LICENSE
+      - README.md
+
+nfpms:
+  - id: updock
+    package_name: updock
+    vendor: Amr Elsagaei
+    homepage: https://amrelsagaei.com
+    maintainer: Amr Elsagaei <amr.elsagaei@gmail.com>
+    description: Run any Docker app from one word.
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
+    bindir: /usr/bin
+
+homebrew_casks:
+  - name: updock
+    repository:
+      owner: amrelsagaei
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: https://amrelsagaei.com
+    description: Run any Docker app from one word.
+    commit_author:
+      name: goreleaser-bot
+      email: bot@amrelsagaei.com
+    # Remove macOS quarantine attribute so the binary runs without a warning.
+    hooks:
+      post:
+        install: |
+          if system_command("/usr/bin/xattr", args: ["-h"]).exit_status == 0
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/updock"]
+          end
+
+sboms:
+  - id: archive
+    artifacts: archive
+
+checksum:
+  name_template: "checksums.txt"
+
+signs:
+  - cmd: cosign
+    certificate: "${artifact}.pem"
+    artifacts: checksum
+    output: true
+    args:
+      - "sign-blob"
+      - "--output-signature=${signature}"
+      - "--output-certificate=${certificate}"
+      - "${artifact}"
+      - "--yes"
+
+changelog:
+  use: github
+  sort: asc
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\(.+\))??!?:.+$'
+      order: 0
+    - title: Bug fixes
+      regexp: '^.*?fix(\(.+\))??!?:.+$'
+      order: 1
+    - title: Others
+      order: 999
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "^ci:"
+
+release:
+  github:
+    owner: amrelsagaei
+    name: updock
+  draft: false
+  prerelease: auto
+  footer: |
+    ---
+    Verify the download:
+
+    ```
+    cosign verify-blob \
+      --certificate checksums.txt.pem \
+      --signature checksums.txt.sig \
+      --certificate-identity-regexp 'https://github.com/amrelsagaei/updock' \
+      --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+      checksums.txt
+    ```

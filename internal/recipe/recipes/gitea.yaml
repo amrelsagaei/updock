@@ -1,0 +1,59 @@
+meta:
+  name: gitea
+  description: Gitea git server with PostgreSQL
+  version: "1.0"
+  author: updock
+  tags: [git, devtools, scm]
+
+prompts:
+  - name: DB_PASSWORD
+    description: PostgreSQL password
+    required: true
+    secret: true
+    generate: password
+  - name: DB_NAME
+    description: Database name
+    default: gitea
+  - name: DB_USER
+    description: Database user
+    default: gitea
+  - name: GITEA_PORT
+    description: Gitea HTTP port
+    default: "3000"
+    type: port
+  - name: GITEA_SSH_PORT
+    description: Gitea SSH port
+    default: "2222"
+    type: port
+
+services:
+  gitea:
+    image: gitea/gitea
+    default_tag: latest
+    ports:
+      - "${GITEA_PORT}:3000"
+      - "${GITEA_SSH_PORT}:22"
+    environment:
+      GITEA__database__DB_TYPE: postgres
+      GITEA__database__HOST: db:5432
+      GITEA__database__NAME: "${DB_NAME}"
+      GITEA__database__USER: "${DB_USER}"
+      GITEA__database__PASSWD: "${DB_PASSWORD}"
+    depends_on:
+      - db
+    volumes:
+      - gitea_data:/data
+
+  db:
+    image: postgres
+    default_tag: "16"
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  gitea_data: {}
+  db_data: {}

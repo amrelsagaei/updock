@@ -1,0 +1,51 @@
+meta:
+  name: ghost
+  description: Ghost blog with MySQL database
+  version: "1.0"
+  author: updock
+  tags: [blog, cms, nodejs]
+
+prompts:
+  - name: DB_PASSWORD
+    description: MySQL root password
+    required: true
+    secret: true
+    generate: password
+  - name: GHOST_PORT
+    description: Ghost HTTP port
+    default: "2368"
+    type: port
+  - name: GHOST_URL
+    description: Public URL for Ghost
+    default: http://localhost:2368
+
+services:
+  ghost:
+    image: ghost
+    default_tag: latest
+    ports:
+      - "${GHOST_PORT}:2368"
+    environment:
+      url: "${GHOST_URL}"
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: "${DB_PASSWORD}"
+      database__connection__database: ghost
+    depends_on:
+      - db
+    volumes:
+      - ghost_data:/var/lib/ghost/content
+
+  db:
+    image: mysql
+    default_tag: "8.0"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: ghost
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  ghost_data: {}
+  db_data: {}
