@@ -5,8 +5,9 @@ package prompt
 import (
 	"fmt"
 
-	"github.com/amrelsagaei/updock/internal/hub"
 	"github.com/charmbracelet/huh"
+
+	"github.com/amrelsagaei/updock/internal/hub"
 )
 
 const chooseVersionSentinel = "__choose_version__"

@@ -7,9 +7,10 @@ import (
 	"net"
 	"strconv"
 
+	"github.com/charmbracelet/huh"
+
 	"github.com/amrelsagaei/updock/internal/project"
 	"github.com/amrelsagaei/updock/internal/security"
-	"github.com/charmbracelet/huh"
 )
 
 // PortChecker tests whether a port is available. Replaceable in tests.

@@ -10,10 +10,11 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/charmbracelet/huh"
+
 	"github.com/amrelsagaei/updock/internal/hub"
 	"github.com/amrelsagaei/updock/internal/prompt"
 	"github.com/amrelsagaei/updock/internal/recipe"
-	"github.com/charmbracelet/huh"
 )
 
 // fakeSource implements imageSource for tests - no network.

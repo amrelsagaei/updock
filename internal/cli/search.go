@@ -3,9 +3,10 @@
 package cli
 
 import (
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/hub"
 	"github.com/amrelsagaei/updock/internal/security"
-	"github.com/spf13/cobra"
 )
 
 func newSearchCmd() *cobra.Command {

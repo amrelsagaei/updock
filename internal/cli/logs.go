@@ -3,8 +3,9 @@
 package cli
 
 import (
-	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/spf13/cobra"
+
+	"github.com/amrelsagaei/updock/internal/docker"
 )
 
 func newLogsCmd() *cobra.Command {

@@ -6,13 +6,14 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/config"
 	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/amrelsagaei/updock/internal/hub"
 	"github.com/amrelsagaei/updock/internal/prompt"
 	"github.com/amrelsagaei/updock/internal/recipe"
 	"github.com/amrelsagaei/updock/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 // NewRootCmd creates the top-level updock command with all subcommands.

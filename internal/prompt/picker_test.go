@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/amrelsagaei/updock/internal/hub"
 	"github.com/charmbracelet/huh"
+
+	"github.com/amrelsagaei/updock/internal/hub"
 )
 
 func mockSelect(returnValue string) func(string, []huh.Option[string]) (string, error) {

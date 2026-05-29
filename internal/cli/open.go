@@ -5,10 +5,11 @@ package cli
 import (
 	"fmt"
 
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/config"
 	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/amrelsagaei/updock/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 func newOpenCmd() *cobra.Command {

@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/amrelsagaei/updock/internal/version"
 	"github.com/spf13/cobra"
+
+	"github.com/amrelsagaei/updock/internal/version"
 )
 
 func newVersionCmd() *cobra.Command {

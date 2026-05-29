@@ -5,11 +5,12 @@ package cli
 import (
 	"fmt"
 
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/config"
 	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/amrelsagaei/updock/internal/project"
 	"github.com/amrelsagaei/updock/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 // stateDetector resolves a project's live container state. Overridable in tests.

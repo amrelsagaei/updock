@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/amrelsagaei/updock/internal/prompt"
 	"github.com/amrelsagaei/updock/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 func newRmCmd() *cobra.Command {

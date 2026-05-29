@@ -8,11 +8,12 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
+
 	"github.com/amrelsagaei/updock/internal/docker"
 	"github.com/amrelsagaei/updock/internal/project"
 	"github.com/amrelsagaei/updock/internal/security"
 	"github.com/amrelsagaei/updock/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 func newStatusCmd() *cobra.Command {
