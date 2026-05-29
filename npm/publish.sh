@@ -39,6 +39,7 @@ publish_platform() {
   fi
   cp "${src}" "${pkgdir}/bin/${bin_name}"
   chmod +x "${pkgdir}/bin/${bin_name}"
+  cp "${ROOT}/npm/README.md" "${pkgdir}/README.md"
 
   cat >"${pkgdir}/package.json" <<JSON
 {
@@ -56,6 +57,11 @@ publish_platform() {
 }
 JSON
 
+  if npm view "@updock/${key}@${VERSION}" version >/dev/null 2>&1; then
+    echo "Skipping @updock/${key}@${VERSION} (already on the registry)"
+    return 0
+  fi
+
   echo "Publishing @updock/${key}@${VERSION}"
   # --provenance ties the package to this source build via GitHub OIDC.
   (cd "${pkgdir}" && npm publish --access public --provenance)
@@ -70,6 +76,7 @@ done
 maindir="${WORK}/main"
 mkdir -p "${maindir}/bin"
 cp "${ROOT}/npm/bin/updock.js" "${maindir}/bin/updock.js"
+cp "${ROOT}/npm/README.md" "${maindir}/README.md"
 
 node -e "
 const pkg = require('${ROOT}/npm/package.json');
@@ -80,7 +87,11 @@ for (const dep of Object.keys(pkg.optionalDependencies)) {
 require('fs').writeFileSync('${maindir}/package.json', JSON.stringify(pkg, null, 2));
 "
 
-echo "Publishing updock@${VERSION}"
-(cd "${maindir}" && npm publish --access public --provenance)
+if npm view "updock@${VERSION}" version >/dev/null 2>&1; then
+  echo "Skipping updock@${VERSION} (already on the registry)"
+else
+  echo "Publishing updock@${VERSION}"
+  (cd "${maindir}" && npm publish --access public --provenance)
+fi
 
 echo "All npm packages published for ${VERSION}."
