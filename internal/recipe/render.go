@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/amrelsagaei/updock/internal/project"
@@ -179,6 +180,12 @@ func recipeToConfig(r *Recipe, values map[string]string) *project.Config {
 				cfg.Tag = "latest"
 			}
 		}
+		for _, p := range svc.Ports {
+			expanded := os.Expand(p, func(k string) string { return values[k] })
+			if m, ok := parsePortMapping(expanded); ok {
+				cfg.Ports = append(cfg.Ports, m)
+			}
+		}
 	}
 
 	for _, p := range r.Prompts {
@@ -191,4 +198,25 @@ func recipeToConfig(r *Recipe, values map[string]string) *project.Config {
 	}
 
 	return cfg
+}
+
+// parsePortMapping parses an expanded compose port string into a PortMapping.
+// It accepts "host:container", "ip:host:container", and a trailing "/proto",
+// and reports false when there is no published host port to record.
+func parsePortMapping(s string) (project.PortMapping, bool) {
+	parts := strings.Split(s, ":")
+	if len(parts) < 2 {
+		return project.PortMapping{}, false
+	}
+	hostStr := parts[len(parts)-2]
+	containerStr := parts[len(parts)-1]
+	if i := strings.IndexByte(containerStr, '/'); i >= 0 {
+		containerStr = containerStr[:i]
+	}
+	host, err1 := strconv.Atoi(hostStr)
+	container, err2 := strconv.Atoi(containerStr)
+	if err1 != nil || err2 != nil {
+		return project.PortMapping{}, false
+	}
+	return project.PortMapping{Host: host, Container: container}, true
 }

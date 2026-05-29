@@ -259,3 +259,44 @@ func TestRenderRecordsProjectName(t *testing.T) {
 		t.Error("updock.json should record the on-disk project name")
 	}
 }
+
+func TestParsePortMapping(t *testing.T) {
+	tests := []struct {
+		name          string
+		in            string
+		wantOK        bool
+		wantHost      int
+		wantContainer int
+	}{
+		{"host and container", "8080:80", true, 8080, 80},
+		{"with ip", "127.0.0.1:8080:80", true, 8080, 80},
+		{"with protocol", "8080:80/tcp", true, 8080, 80},
+		{"container only", "80", false, 0, 0},
+		{"non-numeric", "${WP_PORT}:80", false, 0, 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m, ok := parsePortMapping(tt.in)
+			if ok != tt.wantOK {
+				t.Fatalf("ok = %v, want %v", ok, tt.wantOK)
+			}
+			if ok && (m.Host != tt.wantHost || m.Container != tt.wantContainer) {
+				t.Errorf("got %d:%d, want %d:%d", m.Host, m.Container, tt.wantHost, tt.wantContainer)
+			}
+		})
+	}
+}
+
+func TestRecipeToConfigRecordsPorts(t *testing.T) {
+	r := &Recipe{
+		Meta:     Meta{Name: "wp"},
+		Services: map[string]Service{"web": {Image: "wordpress", Ports: []string{"${WP_PORT}:80"}}},
+	}
+	cfg := recipeToConfig(r, map[string]string{"WP_PORT": "8080"})
+	if len(cfg.Ports) != 1 {
+		t.Fatalf("expected 1 port mapping, got %d", len(cfg.Ports))
+	}
+	if cfg.Ports[0].Host != 8080 || cfg.Ports[0].Container != 80 {
+		t.Errorf("got %d:%d, want 8080:80", cfg.Ports[0].Host, cfg.Ports[0].Container)
+	}
+}
