@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/amrelsagaei/updock)](go.mod)
 
-[Install](docs/installation.md) · [Quick start](docs/quickstart.md) · [Docs](https://amrelsagaei.github.io/updock/) · [Recipes](docs/recipes.md)
+[Install](https://amrelsagaei.github.io/updock/installation) · [Quick start](https://amrelsagaei.github.io/updock/quickstart) · [Docs](https://amrelsagaei.github.io/updock/) · [Recipes](https://amrelsagaei.github.io/updock/recipes)
 
 </div>
 
@@ -73,27 +73,27 @@ updock doctor
 updock postgres
 ```
 
-Full walkthrough: [Quick start](docs/quickstart.md). Every install method:
-[Installation](docs/installation.md).
+Full walkthrough: [Quick start](https://amrelsagaei.github.io/updock/quickstart). Every install method:
+[Installation](https://amrelsagaei.github.io/updock/installation).
 
 ## How it works
 
 `updock <name>` runs a short pipeline: **preflight → search → select → inspect →
 configure → scaffold → up**. It reads an image's ports and env vars from the
 registry without pulling it, asks only the questions that matter, and starts the
-stack in the background. The details are in [Usage](docs/usage.md).
+stack in the background. The details are in [Usage](https://amrelsagaei.github.io/updock/usage).
 
 ## Documentation
 
 The full documentation lives at [amrelsagaei.github.io/updock](https://amrelsagaei.github.io/updock/):
 
-- [Installation](docs/installation.md) - every method, per OS, plus verifying a signed download
-- [Quick start](docs/quickstart.md) - zero to running app
-- [Usage](docs/usage.md) - the pipeline and control by number
-- [Commands](docs/commands.md) - full command reference
-- [Configuration](docs/configuration.md) - the config file and every option
-- [Recipes](docs/recipes.md) - multi-service apps and authoring your own
-- [Projects and file layout](docs/projects.md) - what updock writes and where
-- [Security model](docs/security.md) - how secrets and images are handled
-- [Troubleshooting](docs/troubleshooting.md) - common issues and fixes
-- [FAQ](docs/faq.md) - short answers
+- [Installation](https://amrelsagaei.github.io/updock/installation) - every method, per OS, plus verifying a signed download
+- [Quick start](https://amrelsagaei.github.io/updock/quickstart) - zero to running app
+- [Usage](https://amrelsagaei.github.io/updock/usage) - the pipeline and control by number
+- [Commands](https://amrelsagaei.github.io/updock/commands) - full command reference
+- [Configuration](https://amrelsagaei.github.io/updock/configuration) - the config file and every option
+- [Recipes](https://amrelsagaei.github.io/updock/recipes) - multi-service apps and authoring your own
+- [Projects and file layout](https://amrelsagaei.github.io/updock/projects) - what updock writes and where
+- [Security model](https://amrelsagaei.github.io/updock/security) - how secrets and images are handled
+- [Troubleshooting](https://amrelsagaei.github.io/updock/troubleshooting) - common issues and fixes
+- [FAQ](https://amrelsagaei.github.io/updock/faq) - short answers
