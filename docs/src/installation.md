@@ -8,12 +8,45 @@ Docker itself, which you already have). Pick whichever method fits your setup.
 
 ## Quick install
 
-| Platform | Command |
-|---|---|
-| macOS / Linux (Homebrew) | `brew install amrelsagaei/tap/updock` |
-| Go toolchain | `go install github.com/amrelsagaei/updock/cmd/updock@latest` |
-| npm | `npm install -g updock` (or `npx updock <name>`) |
-| Debian / Ubuntu | download the `.deb` from releases, then `sudo dpkg -i updock_*.deb` |
+Pick the tab for your platform:
+
+::: code-group
+
+```bash [Homebrew]
+brew install amrelsagaei/tap/updock
+```
+
+```bash [Go]
+go install github.com/amrelsagaei/updock/cmd/updock@latest
+```
+
+```bash [npm]
+npm install -g updock
+# or run it once, without installing:
+npx updock postgres
+```
+
+```bash [Debian / Ubuntu]
+# download updock_*.deb from the releases page, then:
+sudo dpkg -i updock_*.deb
+```
+
+```bash [RPM]
+# download updock_*.rpm from the releases page, then:
+sudo rpm -i updock_*.rpm
+```
+
+```bash [Alpine]
+# download updock_*.apk from the releases page, then:
+sudo apk add --allow-untrusted updock_*.apk
+```
+
+```powershell [Windows]
+# download updock_windows_<arch>.zip from the releases page,
+# extract updock.exe, and add it to your PATH.
+```
+
+:::
 
 After installing, confirm it works and check your environment:
 

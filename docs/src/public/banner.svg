@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="380" viewBox="0 0 1280 380" role="img" aria-label="updock: run any Docker app from one word">
+  <defs>
+    <linearGradient id="bannerBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0d0c"/>
+      <stop offset="1" stop-color="#0e1714"/>
+    </linearGradient>
+    <radialGradient id="bannerGlow" cx="50%" cy="14%" r="62%">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.32"/>
+      <stop offset="55%" stop-color="#10b981" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bannerMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="bannerWord" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6ee7b7"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+    <pattern id="bannerDots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" fill-opacity="0.035"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="380" fill="url(#bannerBg)"/>
+  <rect width="1280" height="380" fill="url(#bannerDots)"/>
+  <rect width="1280" height="380" fill="url(#bannerGlow)"/>
+
+  <svg x="590" y="50" width="100" height="100" viewBox="0 0 256 256">
+    <rect x="20" y="20" width="216" height="216" rx="52" fill="url(#bannerMark)"/>
+    <path d="M128 56 L188 128 H154 V176 H102 V128 H68 Z" fill="#ffffff"/>
+    <rect x="92" y="190" width="72" height="16" rx="8" fill="#ffffff" fill-opacity="0.92"/>
+  </svg>
+
+  <text x="640" y="246" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="66" font-weight="700" letter-spacing="-2" fill="url(#bannerWord)">updock</text>
+
+  <text x="640" y="296" text-anchor="middle" font-family="'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" letter-spacing="0.4" fill="#9db3aa">Run any Docker app from one word.</text>
+</svg>

@@ -1,8 +1,8 @@
 <div align="center">
 
-# updock
+<img src="docs/src/public/banner.svg" alt="updock: run any Docker app from one word" width="100%">
 
-**Run any Docker app from one word. No YAML. No flag-hunting. No copy-paste from Stack Overflow.**
+<br><br>
 
 [![CI](https://github.com/amrelsagaei/updock/actions/workflows/ci.yml/badge.svg)](https://github.com/amrelsagaei/updock/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/amrelsagaei/updock)](https://goreportcard.com/report/github.com/amrelsagaei/updock)
@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/amrelsagaei/updock)](go.mod)
 
-[Install](docs/installation.md) · [Quick start](docs/quickstart.md) · [Docs](docs/README.md) · [Recipes](docs/recipes.md)
+[Install](docs/installation.md) · [Quick start](docs/quickstart.md) · [Docs](https://amrelsagaei.github.io/updock/) · [Recipes](docs/recipes.md)
 
 </div>
 
@@ -85,7 +85,7 @@ stack in the background. The details are in [Usage](docs/usage.md).
 
 ## Documentation
 
-The full documentation lives in [`docs/`](docs/README.md):
+The full documentation lives at [amrelsagaei.github.io/updock](https://amrelsagaei.github.io/updock/):
 
 - [Installation](docs/installation.md) - every method, per OS, plus verifying a signed download
 - [Quick start](docs/quickstart.md) - zero to running app

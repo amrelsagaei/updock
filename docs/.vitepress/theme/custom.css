@@ -1,0 +1,161 @@
+/* ------------------------------------------------------------------ *
+ * updock docs theme: "engineered calm", emerald on graphite.
+ * Mono wordmark with a grotesque body. Restraint, hairlines, one glow.
+ * ------------------------------------------------------------------ */
+
+:root {
+  --vp-font-family-base: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* --- Brand palette: emerald --- */
+:root {
+  --vp-c-brand-1: #047857;
+  --vp-c-brand-2: #059669;
+  --vp-c-brand-3: #10b981;
+  --vp-c-brand-soft: rgba(16, 185, 129, 0.13);
+
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-soft: var(--vp-c-brand-soft);
+}
+
+.dark {
+  --vp-c-brand-1: #34d399;
+  --vp-c-brand-2: #10b981;
+  --vp-c-brand-3: #059669;
+  --vp-c-brand-soft: rgba(52, 211, 153, 0.15);
+
+  /* Graphite canvas with a whisper of green */
+  --vp-c-bg: #0c100e;
+  --vp-c-bg-alt: #080b0a;
+  --vp-c-bg-soft: #111714;
+  --vp-c-bg-elv: #111714;
+
+  --vp-c-divider: rgba(255, 255, 255, 0.07);
+  --vp-c-border: rgba(255, 255, 255, 0.09);
+  --vp-c-gutter: #050706;
+
+  --vp-code-block-bg: #080c0a;
+}
+
+/* --- Code-group tabs: emerald active state --- */
+:root {
+  --vp-code-tab-active-text-color: var(--vp-c-brand-1);
+  --vp-code-tab-active-bar-color: var(--vp-c-brand-2);
+  --vp-code-tab-hover-text-color: var(--vp-c-text-1);
+}
+
+/* --- Home hero: gradient mono wordmark + emerald glow --- */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #6ee7b7 10%, #10b981 90%);
+
+  --vp-home-hero-image-background-image: radial-gradient(circle at center, rgba(16, 185, 129, 0.55), rgba(4, 120, 87, 0.12) 70%);
+  --vp-home-hero-image-filter: blur(64px);
+}
+
+@media (min-width: 640px) {
+  :root { --vp-home-hero-image-filter: blur(80px); }
+}
+@media (min-width: 960px) {
+  :root { --vp-home-hero-image-filter: blur(104px); }
+}
+
+.VPHero .name {
+  font-family: var(--vp-font-family-mono);
+  letter-spacing: -0.03em;
+}
+
+/* Atmospheric emerald wash at the top of the home page */
+.VPHome {
+  position: relative;
+}
+.VPHome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 520px;
+  background: radial-gradient(60% 60% at 50% -10%, rgba(16, 185, 129, 0.10), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Brand-flavored nav title in mono */
+.VPNavBarTitle .text {
+  font-family: var(--vp-font-family-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* --- Feature cards: hairline, emerald icon well, hover lift --- */
+.VPFeature {
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-soft);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.VPFeature:hover {
+  transform: translateY(-3px);
+  border-color: var(--vp-c-brand-2);
+  box-shadow: 0 14px 36px -16px rgba(16, 185, 129, 0.4);
+}
+.VPFeature .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-c-brand-soft) !important;
+  border-radius: 10px;
+}
+.VPFeature .icon i {
+  font-size: 22px;
+  line-height: 1;
+  color: var(--vp-c-brand-1);
+}
+
+/* --- Buttons: a soft emerald lift on the primary action --- */
+.VPButton.brand {
+  box-shadow: 0 8px 24px -10px rgba(16, 185, 129, 0.55);
+}
+
+/* --- Footer: message left, copyright right, one line --- */
+.VPFooter .container,
+.VPFooter.has-sidebar .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+.VPFooter .message,
+.VPFooter .copyright {
+  margin: 0;
+}
+
+/* --- One orchestrated page-load reveal on the home hero --- */
+@keyframes updock-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.VPHero .name    { animation: updock-rise 0.6s both 0.05s; }
+.VPHero .text    { animation: updock-rise 0.6s both 0.14s; }
+.VPHero .tagline { animation: updock-rise 0.6s both 0.24s; }
+.VPHero .actions { animation: updock-rise 0.6s both 0.34s; }
+.VPHero .image   { animation: updock-rise 0.9s both 0.18s; }
+.VPHome .VPFeatures { animation: updock-rise 0.7s both 0.44s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .VPHero .name,
+  .VPHero .text,
+  .VPHero .tagline,
+  .VPHero .actions,
+  .VPHero .image,
+  .VPHome .VPFeatures,
+  .VPFeature {
+    animation: none !important;
+    transition: none !important;
+  }
+}
