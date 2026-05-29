@@ -46,6 +46,10 @@ publish_platform() {
   "version": "${VERSION}",
   "description": "updock binary for ${npm_os} ${npm_cpu}",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amrelsagaei/updock.git"
+  },
   "os": ["${npm_os}"],
   "cpu": ["${npm_cpu}"],
   "files": ["bin/"]
